@@ -1,0 +1,14 @@
+--I assume you have S3 bucket with name:vprofile-kops-state203
+--I assume you have DNS hosted zone called: kubevpro.homeliving.co.kubevpro
+--Setup kops on EC2 instance & on it run:  kops create cluster --name=kubevpro.homeliving.co.ke\
+ --state=s3://vprofile-kops-state203\
+  --zones=us-east-1a,us-east-1b --node-count=2\
+   --node-size=t2.micro --master-size=t2.micro\
+    --dns-zone=kubevpro.homeliving.co.ke
+  ####CREATES JUST A CONFIG, NEXT, RUN BELOW TO CREATE cluster
+
+--kops update cluster --name=kubevpro.homeliving.co.ke --state=s3://vprofile-kops-state203 --yes
+## CREATES cluster
+
+
+

@@ -5,10 +5,44 @@
   --zones=us-east-1a,us-east-1b --node-count=2\
    --node-size=t2.micro --master-size=t2.micro\
     --dns-zone=kubevpro.homeliving.co.ke
+
+
+#USE BELOW IF ABOVE IS NOT WORKING, found issues with speed with t2.micro
+--kops create cluster --name=kubevpro.homeliving.co.ke\
+ --state=s3://vprofile-kops-state203 --zones=us-east-1a,us-east-1b\
+  --node-count=2 --node-size=t3.small --master-size=t3.medium\
+   --dns-zone=kubevpro.homeliving.co.ke --node-volume-size=8 --master-volume-size=8
+
+   
   ####CREATES JUST A CONFIG, NEXT, RUN BELOW TO CREATE cluster
 
 --kops update cluster --name=kubevpro.homeliving.co.ke --state=s3://vprofile-kops-state203 --yes
 ## CREATES cluster
 
+- should see ec2 instances firing update
 
+--kops validate cluster --name=kubevpro.homeliving.co.ke --state=s3://vprofile-kops-state203
+## check health of cluster!
+
+--aws ec2 create-volume --availability-zone=us-east-1a --size=3 --volume-type=gp2
+## to create volume for storing DB stuff --size is in Gb, so 3GB, once you hit enter AWS will output to you data in JSON with the details.
+Data like this {
+    {
+    "AvailabilityZone": "us-east-1a",
+    "CreateTime": "2023-06-20T00:50:22.000Z",
+    "Encrypted": false,
+    "Size": 3,
+    "SnapshotId": "",
+    "State": "creating",
+    "VolumeId": "vol-0ffa3fc236e1357eb",
+    "Iops": 100,
+    "Tags": [],
+    "VolumeType": "gp2",
+    "MultiAttachEnabled": false
+}
+}
+
+--label nodes with zones
+kubectl label nodes i-077816660bcebccad zone=us-east-1a
+kubectl label nodes i-0c4f6e69de00bf60d zone=us-east-1b
 

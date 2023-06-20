@@ -58,3 +58,5 @@ kubectl label nodes i-0c4f6e69de00bf60d zone=us-east-1b
 --IMPORTANT: for volumes to be attached to kubernetes cluster we need to specify Tags in AWS for the specific EBS
 -- so Key for me is KubernetesCluster Value is kubevpro.homeliving.co.ke, OTHERWISE you'll get permission errors
 
+--run  kubectl create -f vprodbdep.yaml
+--run kubectl get Deployment

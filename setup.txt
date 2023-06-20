@@ -42,7 +42,9 @@ Data like this {
 }
 }
 
---label nodes with zones
+--label nodes with zones - makes it visible
 kubectl label nodes i-077816660bcebccad zone=us-east-1a
 kubectl label nodes i-0c4f6e69de00bf60d zone=us-east-1b
+
+-- I'll use images from my repo: https://hub.docker.com/repositories/jaypatel16
 

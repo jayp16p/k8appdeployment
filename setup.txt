@@ -48,3 +48,9 @@ kubectl label nodes i-0c4f6e69de00bf60d zone=us-east-1b
 
 -- I'll use images from my repo: https://hub.docker.com/repositories/jaypatel16
 
+--must encode passwords like this and paste below: ubuntu@ip-172-31-90-20:~$ echo -n "vprodbpass" | base64
+#dnByb2RicGFzcw== in the secret.yaml file
+
+-- apply secret "kubectl create -f app-secret.yaml"
+-- describe secret "kubectl get secret"
+-- "kubectl describe secret app-secret"
